@@ -10,6 +10,7 @@ import {
 } from "@heroui/react";
 import { Calendar, Eye, EyeSlash, Person, Persons } from "@gravity-ui/icons";
 
+//for styling
 const fieldClassNames = {
   inputWrapper:
     "w-100 h-12 rounded-xl border border-slate-200 bg-slate-50 shadow-none data-[focus=true]:border-main data-[focus=true]:ring-2 data-[focus=true]:ring-blue-100",
@@ -25,8 +26,16 @@ function FieldIcon({ children }) {
 }
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
+  //controlled component  and un controlled component
 
+  const [FullName, setFullName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  console.log(FullName)
+  function submitData() {
+    const formData = {
+      name: FullName,
+    };
+  }
   return (
     <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-6 shadow-sm sm:p-7">
       <div className="flex rounded-xl bg-slate-100 p-1 text-sm font-bold">
@@ -56,6 +65,8 @@ export default function Register() {
         onSubmit={(event) => event.preventDefault()}
       >
         <Input
+          value={FullName}
+          onChange={(e) => setFullName(e.target.value)}
           aria-label="Full name"
           className="w-full"
           classNames={fieldClassNames}
@@ -114,10 +125,6 @@ export default function Register() {
               </ListBox.Item>
               <ListBox.Item id="female" textValue="Female">
                 Female
-                <ListBox.ItemIndicator />
-              </ListBox.Item>
-              <ListBox.Item id="other" textValue="Other">
-                Other
                 <ListBox.ItemIndicator />
               </ListBox.Item>
             </ListBox>
